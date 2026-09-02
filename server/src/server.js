@@ -8,7 +8,8 @@ const { connectDB } = require("./config/db");
 const { notFound, errorHandler } = require("./middleware/errorHandler");
 
 const healthRouter = require("./routes/health");
-const authRouter = require("./routes/auth")
+const authRouter = require("./routes/auth");
+const clientsRouter = require("./routes/client");
 
 const app = express();
 
@@ -27,6 +28,7 @@ if (!env.isProd) app.use(morgan("dev"));
 
 app.use("/api/health", healthRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/clients", clientsRouter);
 
 app.use(notFound);
 app.use(errorHandler);

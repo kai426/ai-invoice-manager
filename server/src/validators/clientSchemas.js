@@ -1,0 +1,18 @@
+const { z } = require("zod");
+
+const uuid = z.string().uuid("Invalid id");
+const idParam = z.object({ id: uuid });
+
+const clientSchema = z.object({
+  name: z.string().trim().min(1).max(120),
+  email: z.string().trim().email().or(z.literal("")).optional(),
+  company: z.string().trim().max(160).optional(),
+  phone: z.string().trim().max(40).optional(),
+  address: z.string().trim().max(400).optional(),
+  notes: z.string().trim().max(2000).optional(),
+});
+
+module.exports = {
+  idParam,
+  clientSchema,
+};
