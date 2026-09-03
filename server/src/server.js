@@ -11,6 +11,10 @@ const healthRouter = require("./routes/health");
 const authRouter = require("./routes/auth");
 const clientsRouter = require("./routes/client");
 const invoicesRouter = require("./routes/invoice");
+const dashboardRouter = require("./routes/dashboard");
+const reportsRouter = require("./routes/reports");
+const settingsRouter = require("./routes/settings");
+const itemsRouter = require("./routes/items");
 
 const app = express();
 
@@ -31,6 +35,10 @@ app.use("/api/health", healthRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/clients", clientsRouter);
 app.use("/api/invoices", invoicesRouter);
+app.use("/api/dashboard", dashboardRouter);
+app.use("/api/reports", reportsRouter);
+app.use("/api/settings", settingsRouter);
+app.use("/api/items", itemsRouter);
 
 app.use(notFound);
 app.use(errorHandler);
