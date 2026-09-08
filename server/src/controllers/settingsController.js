@@ -1,16 +1,16 @@
-const Settings = require("../models/Settings");
+const {
+  getSettings: getSettingsRecord,
+  updateSettings: updateSettingsRecord,
+} = require("../services/settingsService");
 
 async function getSettings(req, res) {
-  const settings = await Settings.ensure(req.user.id);
+  const settings = await getSettingsRecord(req.user.id);
   res.json({ settings });
 }
 
 async function updateSettings(req, res) {
-  const settings = await Settings.update(req.user.id, req.body);
+  const settings = await updateSettingsRecord(req.user.id, req.body);
   res.json({ settings });
 }
 
-module.exports = {
-  getSettings,
-  updateSettings,
-};
+module.exports = { getSettings, updateSettings };

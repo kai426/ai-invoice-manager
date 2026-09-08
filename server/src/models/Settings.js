@@ -1,4 +1,5 @@
 const { query, queryOne, withTransaction } = require("../config/db");
+const { buildUpdateFields } = require("../utils/helpers");
 
 const COLS =
   "user_id, company_name, logo_url, address, email, phone, currency, tax_rate, invoice_prefix, next_seq, accent_color, created_at";
@@ -33,15 +34,7 @@ async function update(userId, fields) {
     "accent_color",
   ];
 
-  const sets = [];
-  const values = [userId];
-
-  for (const key of allowed) {
-    if (fields[key] !== undefined) {
-      values.push(fields[key]);
-      sets.push(`${key} = $${values.length}`);
-    }
-  }
+  const { sets, values } = buildUpdateFields(fields, allowed, [userId]);
 
   if (!sets.length) return ensure(userId);
 
