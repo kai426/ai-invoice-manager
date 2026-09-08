@@ -1,6 +1,5 @@
 const { query, queryOne } = require("../config/db");
-
-const numberOrZero = (value) => Number(value) || 0;
+const { numberOrZero } = require("../utils/helpers");
 
 async function getReports(userId) {
   const totals = await queryOne(

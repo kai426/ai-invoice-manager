@@ -1,7 +1,5 @@
 const { z } = require("zod");
-
-const uuid = z.string().uuid("Invalid id");
-const idParam = z.object({ id: uuid });
+const { idParam } = require("../utils/helpers");
 
 const clientSchema = z.object({
   name: z.string().trim().min(1).max(120),

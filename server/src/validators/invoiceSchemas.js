@@ -1,12 +1,5 @@
 const { z } = require("zod");
-
-const uuid = z.string().uuid("Invalid id");
-const idParam = z.object({ id: uuid });
-
-const dateStr = z
-  .string()
-  .regex(/^\d{4}-\d{2}-\d{2}$/, "Use YYYY-MM-DD")
-  .optional();
+const { dateStr, idParam, uuid } = require("../utils/helpers");
 
 const itemSchema = z.object({
   description: z.string().trim().max(500).default(""),
